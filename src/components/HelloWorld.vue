@@ -1,9 +1,6 @@
 <template>
   <div class="hello">
     <el-button :plain="true" @click="open1">消息</el-button>
-    <el-button :plain="true" @click="open2">成功</el-button>
-    <el-button :plain="true" @click="open3">警告</el-button>
-    <el-button :plain="true" @click="open4">错误</el-button>
     <br>
     
     {{count}}

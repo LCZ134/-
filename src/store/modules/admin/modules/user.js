@@ -1,19 +1,39 @@
+import api from '@/api/index'
+import { formatUrlParams } from '@/uitls'
+import { Message, MessageBox } from 'element-ui';
+
+
 export default {
   namespaced: true,
   state: {
-    count: 0
+    userinfo: JSON.parse(sessionStorage.getItem("user")),
   },
   mutations: {
-    setCount(state, num) {
-      state.count += num;
-    }
+    setlogin(state, userinfo) {
+      //console.log(userinfo, JSON.stringify(userinfo));
+      sessionStorage.setItem("user", JSON.stringify(userinfo));
+      state.userinfo = userinfo;
+    },
+    loginout(state) {
+      sessionStorage.removeItem("user");
+    },
   },
   actions: {
-    AddCount({ commit }, num) {
+    userLogin({ commit }, userinfo) {
       return new Promise((resolve, reject) => {
-        commit('setCount', num);
+        // api.post('',null,res=>{// })
+        var istate = true;
+
+        if (!istate) {
+          Message({ message: '错了哦，用户名或密码输入错误', type: 'error' });
+        } else {
+          Message({ message: "登录成功", type: "success" });
+          commit('setlogin', userinfo);
+        }
+
         resolve();
       })
     }
+
   }
 }

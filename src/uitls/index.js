@@ -1,11 +1,26 @@
-var a = "5465";
+const formUrlParams = (obj) => {
 
-function A() {
-  console.log(a);
+  obj = obj || {};
+  var result = {};
+
+  Object.keys(obj).forEach(key => {
+    result[key] = key != 'pageIndex' ? obj[key] : obj[key] - 1;
+  });
+
+  var parmsStr = Object.keys(result)
+    .filter(key => filterEmply(result[key]))
+    .map(key => `${key}=${result[key]}`)
+    .join('&');
+  return parmsStr ? `?${parmsStr}` : '';
+
 }
 
-function B(params) {
-  console.log(params);
+function filterEmply(value) {
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  } else {
+    return !!value;
+  }
 }
 
-export default { A, B }
+export default { formUrlParams }

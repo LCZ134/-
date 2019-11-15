@@ -6,6 +6,9 @@ var root = '/api'
 // 引用axios
 var axios = require('axios')
 
+//配置默认请求地址
+//axios.default.baseURL=root;
+
 // 自定义判断元素类型JS
 function toType(obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
