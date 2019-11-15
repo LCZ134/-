@@ -14,6 +14,14 @@ function toType(obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
+
+//添加header 的值
+// axios.interceptors.request.use(config => {
+//   config.headers.Authorization = sessionStorage.getItem('user');
+//return config;
+// })
+
+
 // 参数过滤函数
 function filterNull(o) {
   for (var key in o) {
@@ -30,6 +38,9 @@ function filterNull(o) {
   }
   return o
 }
+
+
+
 
 function apiAxios(method, url, params, success, failure) {
   if (params) {

@@ -1,23 +1,14 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
-import Login from '@/components/login.vue'
-import Home from '@/components/home.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const router = new Router({
-  routes: [{
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    }
-  ]
+import routes from './routes'
+
+const router = new VueRouter({
+  mode: 'history',
+  routes
 })
 
 router.beforeEach((to, from, next) => {
@@ -25,7 +16,6 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/login' || to.path === '/logout') {
     sessionStorage.removeItem('user');
   }
-
   var user = sessionStorage.getItem('user');
 
   if (!user && to.path !== '/login') {
